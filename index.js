@@ -21,14 +21,49 @@ app.get('/', (req,res) => {
 })
 
 app.get('/rooms', (req,res) => {
-
-    console.log(database)
-
     res.render('rooms', {
         title:'room listings',
-        rooms:database
+        rooms:database,
+        room_link:`${__dirname}/rooms/`
     })
-    
+})
+
+app.get('/rooms/:id', (req,res) => {
+
+    let room_details = database.filter((data) => {
+        return data.id === req.params.id
+    })
+
+    res.render('room_view', {
+        title:room_details[0].room_name,
+        id:room_details[0].id
+    })
+
+})
+
+app.get('/rooms/:id/:title/:text', (req,res) => {
+
+    let index = database.findIndex((data) => {
+        return data.id === req.params.id
+    })
+
+    console.log(index)
+
+    new_note = {
+        id:uniqid(),
+        title:req.params.title,
+        text:req.params.text,
+    }
+
+    database[index].notes
+        .push(new_note)
+
+    fs.writeFile('./statics/data/rooms.json', JSON.stringify(database), (err) => {
+        if (err) throw err
+        console.log('finished')
+    })
+
+    res.send(database[index].notes)
 })
 
 app.get('/rooms/add/:roomName', (req,res) => {
@@ -38,7 +73,8 @@ app.get('/rooms/add/:roomName', (req,res) => {
     let render = {
         id: id,
         room_name: req.params.roomName,
-        creation_time: Date.now()
+        creation_time: Date.now(),
+        notes:[]
     }
 
     res.render('add_room', {

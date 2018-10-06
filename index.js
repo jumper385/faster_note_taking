@@ -1,5 +1,5 @@
 let express = require('express')
-let hbs = require('hbs')
+let hbs = require('express-handlebars')
 let fs = require('fs')
 let bodyParser = require('body-parser')
 let uniqid = require('uniqid')
@@ -9,8 +9,14 @@ app.use(express.static('statics'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    extname:'hbs',
+    defaultLayout:'default',
+    layoutsDir:'./views/layouts',
+    partialsDir:'./views/partials'
+}))
 app.set('views', './views')
+app.set('view engine', 'hbs');
 
 let database = fs.readFile('./statics/data/rooms.json', (err, data) => {
 

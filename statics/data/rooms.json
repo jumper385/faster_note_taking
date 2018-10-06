@@ -3,23 +3,7 @@
 		"id": "dv8wc117cjmw291uw",
 		"room_name": "virgo",
 		"creation_time": 1538747028391,
-		"notes": [
-			{
-				"id": "dv8wc1a2ojmxapmdg",
-				"title": "hello world",
-				"notes": "hello \n- 🍎🍏🍇🍌🍒 fruits of the new age"
-			},
-			{
-				"id": "dv8wc1cr0jmxaqd7r",
-				"title": "This is a new Note",
-				"notes": "fun notes posting\n- With extra tabs!!! 😄"
-			},
-			{
-				"id": "dv8wc16w8jmxberhf",
-				"title": "",
-				"notes": "1) Tabbed for shiggles\n2) tabs too?\n3) does this work?"
-			}
-		]
+		"notes": []
 	},
 	{
 		"id": "dv8wc1d40jmw29fjr",
@@ -43,32 +27,24 @@
 		"id": "dv8wc19ncjmx26md0",
 		"room_name": "theros",
 		"creation_time": 1538807381171,
-		"notes": [
-			{
-				"id": "dv8wc1assjmx2imdt",
-				"title": "test submission",
-				"notes": "OMFG IT'S A SUBMISSION!!!"
-			},
-			{
-				"id": "dv8wc17acjmx2iypd",
-				"title": "test title",
-				"notes": "test paragraph//Magna reprehenderit do commodo laboris occaecat."
-			},
-			{
-				"id": "dv8wc14j8jmx2ju0y",
-				"title": "OMFG CLEANESS???",
-				"notes": "yus\n\n- oh hello world\n- marc saupin\n"
-			},
-			{
-				"id": "dv8wc14z4jmxbcu83",
-				"title": "berry boi?",
-				"notes": "- yup berry boi\n- omfg hai\n- yeet!"
-			},
-			{
-				"id": "dv8wc159kjmxbdb66",
-				"title": "nameless",
-				"notes": "- yup berry boi\n- omfg hai \n- yeet!\n- yort! \n- toom"
-			}
-		]
+		"notes": []
+	},
+	{
+		"id": "dv8wc16ycjmxid2l4",
+		"room_name": "🍏 apple",
+		"creation_time": 1538834555991,
+		"notes": []
+	},
+	{
+		"id": "dv8wc12qgjmxieeq9",
+		"room_name": "👌 just good memes",
+		"creation_time": 1538834618384,
+		"notes": []
+	},
+	{
+		"id": "dv8wc1bzojmxifvxl",
+		"room_name": "🍎red apples vs green apples🍏",
+		"creation_time": 1538834687336,
+		"notes": []
 	}
 ]

@@ -28,13 +28,29 @@ app.get('/', (req,res) => {
     })
 })
 
-app.get('/rooms', (req,res) => {
-    res.render('rooms', {
-        title:'room listings',
-        rooms:database,
-        room_link:`${__dirname}/rooms/`
+app.route('/rooms')
+    .get((req,res) => {
+        res.render('rooms', {
+            title:'room listings',
+            rooms:database,
+            room_link:`${__dirname}/rooms/`
+        })
     })
-})
+    .post((req,res) => {
+        console.log(req.body)
+        let new_room = {
+            id:uniqid(),
+            room_name:req.body.room_name,
+            creation_time:Date.now(),
+            notes:[]
+        }
+
+        database.push(new_room)
+
+        console.log(new_room)
+
+        updateDatabase()
+    })
 
 app.route('/rooms/:id')
     .get((req,res) => {
@@ -62,34 +78,8 @@ app.route('/rooms/:id')
             notes:req.body.notes
         })
 
-        console.log(database[index])
         updateDatabase()
-
-        res.send('server received')
     })
-
-app.get('/rooms/add/:roomName', (req,res) => {
-
-    let id = uniqid()
-
-    let render = {
-        id: id,
-        room_name: req.params.roomName,
-        creation_time: Date.now(),
-        notes:[]
-    }
-
-    res.render('add_room', {
-        title:'add rooms',
-        room_name: req.params.roomName,
-        id:id,
-        raw_json:JSON.stringify(render)
-    })
-
-    database.push(render)
-
-    updateDatabase()
-})
 
 app.get('/rooms/flush', (req,res) => {
     fs.writeFile('./statics/data/rooms.json', JSON.stringify([]), (err) => {
@@ -106,5 +96,5 @@ let updateDatabase = () => {
     fs.writeFile('./statics/data/rooms.json', JSON.stringify(database, null, '\t'), (err) => {
         if (err) throw err
         console.log('finished')
-    })
+    })  
 }

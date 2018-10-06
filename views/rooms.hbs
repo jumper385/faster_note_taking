@@ -1,5 +1,49 @@
-<h1>{{title}}</h1>
-{{#rooms}}
-<li>{{room_name}} of id: {{id}}</li>
-<a href="./rooms/{{id}}"">Join Room</a>
-{{/rooms}}
+<body>
+
+    <h1>{{title}}</h1>
+
+    <form id='new_room'>
+        <label for='add_room'>Room Name</label>
+        <input type='input' id='add_room' required>
+        <input type='submit'>
+    </form>
+
+    {{#rooms}}
+    <li>{{room_name}} of id: {{id}}</li>
+    <a href="./rooms/{{id}}">Join Room</a>
+    {{/rooms}}
+
+    <script>
+
+        const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
+
+        document.getElementById('new_room').addEventListener('submit',() => {
+            
+            req = new XMLHttpRequest();
+            req.open('POST', '/rooms')
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            let newRoom = {
+                room_name:DOMID('add_room').value,
+            }
+
+            req.onreadystatechange = () => {
+                if(this.readyState == 4 && this.status == 200){
+                    console.log('complete')
+                }
+            }
+
+            req.send(toUrlEncoded(newRoom))
+
+            console.log(newRoom)
+
+            
+        })
+
+        function DOMID(name){
+            return document.getElementById(name)
+        }
+
+    </script>
+
+</body>

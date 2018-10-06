@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jumper385/quick_note#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "hbs": "^4.0.1",
     "node-audiorecorder": "^1.1.3",

@@ -1,0 +1,11 @@
+.card{
+    margin-bottom: 16pt;
+}
+.card_title{
+    font-weight: 600;
+    margin:0;
+}
+.card_id{
+    color:rgb(206, 206, 206);
+    margin:0;
+}

@@ -1,5 +1,27 @@
-<body>
+<!doctype html>
+<html lang="en">
 
+<head>
+    <link rel='icon' type='image/ico' href='/images/favicon.ico'>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}}</title>
+
+    <link rel='stylesheet' href='/css/normalize.css'>
+    <link rel='stylesheet' href='/css/skeleton.css'>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="icon" href="/images/favicon.png">
+</head>
+
+<body class = 'container'>
+    {{> header}}
+    
     {{{body}}}
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
+
+</html>

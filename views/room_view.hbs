@@ -1,76 +1,73 @@
-<body>
-    <h1>ROOM NAME: {{title}}</h1>
-    <p>{{id}}</p>
+<p>{{id}}</p>
 
-    <div id = 'note_holder'>
-    {{#notes}}
-    <h3 class='regex-format'>{{title}}</h3>
-    <p class='regex-format'>{{notes}}</p>
-    {{/notes}}
-    </div>
+<div id = 'note_holder'>
+{{#notes}}
+<h3 class='regex-format'>{{title}}</h3>
+<p class='regex-format'>{{notes}}</p>
+{{/notes}}
+</div>
 
-    <form>
-        <span>Title: <br><input type='text' id='notes_title'></span>
-        <br>
-        <span>Notes: <br><textarea id='notes_paragraph'></textarea></span>
-        <br>
-        <button id='notes_submit'>Submit</button>
-    </form>
+<form>
+    <span>Title: <br><input type='text' id='notes_title'></span>
+    <br>
+    <span>Notes: <br><textarea id='notes_paragraph'></textarea></span>
+    <br>
+    <button id='notes_submit'>Submit</button>
+</form>
 
-    <script>
+<script>
 
-        let notes = document.getElementsByClassName('regex-format')
-        
-        let alpha = Array.from(notes).map((acc) => {
-            let data = acc.innerHTML.replace(/\n/g, "<br>")
-            return data
-        })
+    let notes = document.getElementsByClassName('regex-format')
+    
+    let alpha = Array.from(notes).map((acc) => {
+        let data = acc.innerHTML.replace(/\n/g, "<br>")
+        return data
+    })
 
-        for(var i = 0; i < alpha.length; i++){
-            notes[i].innerHTML = alpha[i]
+    for(var i = 0; i < alpha.length; i++){
+        notes[i].innerHTML = alpha[i]
+    }
+
+    document.getElementById('notes_submit').addEventListener('click', makeRequest)
+
+    function makeRequest(){
+
+        let roomID = '{{id}}'
+
+        console.log("HELLO")
+
+        let req = new XMLHttpRequest()
+
+        req.open('POST', `/rooms/${roomID}`)
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = () => {
+            if(req.readyState == 4 && req.status == 200){
+                console.log('sent POST')
+            }
         }
 
-        document.getElementById('notes_submit').addEventListener('click', makeRequest)
+        let payload = {
+            title:DOMID('notes_title').value,
+            notes:DOMID('notes_paragraph').value
+        }
 
-        function makeRequest(){
+        console.log(payload.notes)
 
-            let roomID = '{{id}}'
+        if(payload.notes === "" & payload.title === ""){
+            console.log("OH SHIT")
+        } else {
+            req.send(payload && toUrlEncoded(payload))
+            console.log(payload)
+        }
 
-            console.log("HELLO")
+    }    
 
-            let req = new XMLHttpRequest()
+    function DOMID(name){
+        return document.getElementById(name)
+    }    
 
-            req.open('POST', `/rooms/${roomID}`)
-            req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            req.onreadystatechange = () => {
-                if(req.readyState == 4 && req.status == 200){
-                    console.log('sent POST')
-                }
-            }
+    const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
 
-            let payload = {
-                title:DOMID('notes_title').value,
-                notes:DOMID('notes_paragraph').value
-            }
+    toUrlEncoded({hello: 'world', message: "JavaScript is cool"});
 
-            console.log(payload.notes)
-
-            if(payload.notes === "" & payload.title === ""){
-                console.log("OH SHIT")
-            } else {
-                req.send(payload && toUrlEncoded(payload))
-                console.log(payload)
-            }
-
-        }    
-
-        function DOMID(name){
-            return document.getElementById(name)
-        }    
-
-        const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
-
-toUrlEncoded({hello: 'world', message: "JavaScript is cool"});
-
-    </script>
-</body>
+</script>

@@ -5,7 +5,7 @@ let bodyParser = require('body-parser')
 let uniqid = require('uniqid')
 let app = express()
 
-app.use(express.static('statics'))
+app.use(express.static('./statics'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -36,14 +36,22 @@ app.get('/', (req,res) => {
 
 app.route('/rooms')
     .get((req,res) => {
+
+        let rendered = resize([database], Math.ceil(database.length/3), 3)
+
+        remainder = Math.ceil(database.length/3)*3-database.length
+
+        for(i = 0; i < remainder; i++){
+            rendered[rendered.length-1].pop()
+        }
+
         res.render('rooms', {
             title:'room listings',
-            rooms:database,
+            rooms:rendered,
             room_link:`${__dirname}/rooms/`
         })
     })
     .post((req,res) => {
-        console.log(req.body)
         let new_room = {
             id:uniqid(),
             room_name:req.body.room_name,
@@ -52,8 +60,6 @@ app.route('/rooms')
         }
 
         database.push(new_room)
-
-        console.log(new_room)
 
         updateDatabase()
     })
@@ -87,10 +93,17 @@ app.route('/rooms/:id')
         updateDatabase()
     })
 
-app.get('/rooms/flush', (req,res) => {
+app.get('/rooms/delete/flush', (req,res) => {
     fs.writeFile('./statics/data/rooms.json', JSON.stringify([]), (err) => {
         if(err) throw err
         console.log('database wiped')
+    })
+    res.send('rooms flushed')
+})
+
+app.get('/rooms/delete/are_you_sure', (req,res) => {
+    res.render('delete', {
+        title:'Removing Rooms'
     })
 })
 
@@ -103,4 +116,10 @@ let updateDatabase = () => {
         if (err) throw err
         console.log('finished')
     })  
+}
+
+function resize(array, i, j) {
+    var gen = array.reduce((a, b) => a.concat(b))[Symbol.iterator]();
+    
+    return Array.from({ length: i }, _ => Array.from({ length: j }, _ => gen.next().value));
 }

@@ -48,12 +48,12 @@
     <button id='notes_submit'>Submit</button> --}}
     <div class='twelve columns'>
         <label class='u-full-width' for='notes_title'>Note Title</label>
-        <input class='u-full-width' type='text' id='notes_title' name='title' placeholder='Enter Title Here' value='Doll Fins 🐬'>
+        <input class='u-full-width' type='text' id='notes_title' name='title' placeholder='Enter Title Here'>
     </div>
 
     <div class='twelve columns'>
         <label class='u-full-width' for='notes_paragraph'>Notes</label>
-        <textarea class='u-full-width' id='notes_paragraph' name='notes' placeholder="Enter Notes Here">Velit Lorem eiusmod velit esse adipisicing qui dolore. Officia labore do nisi nisi reprehenderit ullamco mollit fugiat minim irure. Adipisicing officia laborum esse nulla laboris consequat occaecat nostrud laboris. Enim sint deserunt aute nisi ea id incididunt labore ea. Ea incididunt tempor ullamco minim officia culpa reprehenderit et minim. Quis aute nisi ad adipisicing adipisicing cillum cillum elit ex laboris sit.</textarea>
+        <textarea class='u-full-width' id='notes_paragraph' name='notes' placeholder="Enter Notes Here"></textarea>
     </div>
 
     <input type='submit' class='button-primary u-full-width'>
@@ -95,20 +95,6 @@
         window.location.reload()
     }
 
-    function POSTPackage(payload, route) {
-        let req = new XMLHttpRequest()
-        req.open('POST', route)
-        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        req.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
-                return true
-            } else return false
-        }
-
-        req.send(toUrlEncoded(payload))
-    }
-
     let notes = document.getElementsByClassName('regex-format')
 
     let alpha = Array.from(notes).map((acc) => {
@@ -135,13 +121,11 @@
 
         req.onreadystatechange = () => {
             if (this.readyState == 4 && this.status == 200) {
-                console.log('complete')
+                return
             }
         }
 
         req.send(toUrlEncoded(payload))
-
-        console.log(payload)
     })
 
 </script>

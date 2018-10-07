@@ -10,22 +10,37 @@
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css.map'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/global.css">
 
 </head>
 
 <body>
     <script>
-        function DOMID(name){
+        
+        function DOMID(name) {
             return document.getElementById(name)
         }
-        
+
         const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
+
+        function POSTPackage(payload, route) {
+            let req = new XMLHttpRequest()
+            req.open('POST', route)
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            req.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    return true
+                } else return false
+            }
+
+            req.send(toUrlEncoded(payload))
+        }
+
     </script>
-    <div class='container window'> 
-        {{> header}}   
+    <div class='container window'>
+        {{> header}}
         {{{body}}}
     </div>
 

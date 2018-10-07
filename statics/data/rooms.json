@@ -1,19 +1,14 @@
 [
 	{
-		"id": "dv8wc1c9kjmynhtph",
-		"room_name": "Hello World 👋",
-		"creation_time": 1538903642020,
-		"notes": [
-			{
-				"id": "dv8wc141kjmynhztc",
-				"title": "Hello World 👋 this is a new note 📝",
-				"notes": "- Yes... this is a new note\r\n- I cant wait for this to actually work\r\n- This is going to be great!"
-			},
-			{
-				"id": "dv8wc17q0jmynocrj",
-				"title": "Hello World 👋 this is a new note 📝",
-				"notes": "- Yes... this is a new note\r\n- I cant wait for this to actually work\r\n- This is going to be great!"
-			}
-		]
+		"id": "dv8wc185gjmypiopd",
+		"room_name": "testing room ✍",
+		"creation_time": 1538907041424,
+		"notes": []
+	},
+	{
+		"id": "dv8wc1a88jmyv1oqw",
+		"room_name": "🍏 apple ",
+		"creation_time": 1538916326023,
+		"notes": []
 	}
 ]

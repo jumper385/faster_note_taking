@@ -90,8 +90,6 @@ app.route('/rooms/:id')
             notes:req.body.notes
         })
 
-        console.log(req.body)
-
         updateDatabase()
     })
 
@@ -109,6 +107,33 @@ app.get('/rooms/delete/are_you_sure', (req,res) => {
     })
 })
 
+app.route('/notes/manipulate')
+    .post((req,res) => {
+        let payload = req.body
+        let room_index;
+        let note_index;
+
+        let room = database.filter((acc,i) => {
+            bool = acc.id === payload.room_id
+            if(bool){
+                room_index = i
+                return bool
+            }
+        })
+
+        let data = database[0].notes.filter((acc, i) => {
+            bool = acc.id === payload.note_id
+            if(bool){
+                note_index = i
+                return bool
+            }
+        })
+
+        database[room_index].notes.splice(note_index, 1)
+
+        updateDatabase()
+    })
+
 app.listen(3000, () => {
     console.log('listening on port 3000')
 })
@@ -121,6 +146,6 @@ let updateDatabase = () => {
 
 function resize(array, i, j) {
     var gen = array.reduce((a, b) => a.concat(b))[Symbol.iterator]();
-    
+
     return Array.from({ length: i }, _ => Array.from({ length: j }, _ => gen.next().value));
 }

@@ -1,4 +1,44 @@
-<p>{{id}}</p>
+<style>
+
+    .note_card{
+            box-sizing: border-box;
+        }
+
+        .note_card .note_buttons{
+            box-sizing: border-box;
+        }
+
+        .note_card .note_text h4{
+            margin:0;
+        }
+
+        .note_card .note_buttons button{
+            width:100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            border:none;
+            padding:0;
+        }
+
+        .id{
+            color:rgb(211, 211, 211);
+            margin-bottom:16pt;
+            margin-top:8pt;
+            font-weight:200;
+        }
+
+        .note_card .note_buttons button:last-child{
+            float:bottom;
+        }
+
+        .note_card .note_buttons button:first-child{
+            float:top;
+        }
+
+    </style>
 
 <form id='submit_notes'>
     {{!-- <span>Title: <br><input type='text' id='notes_title'></span>
@@ -8,40 +48,79 @@
     <button id='notes_submit'>Submit</button> --}}
     <div class='twelve columns'>
         <label class='u-full-width' for='notes_title'>Note Title</label>
-        <input class='u-full-width' type='text' id='notes_title' name='title' value='Hello World 👋 this is a new note 📝'>
+        <input class='u-full-width' type='text' id='notes_title' name='title' placeholder='Enter Title Here' value='Doll Fins 🐬'>
     </div>
 
     <div class='twelve columns'>
         <label class='u-full-width' for='notes_paragraph'>Notes</label>
-        <textarea class='u-full-width' id='notes_paragraph' name='notes'>- Yes... this is a new note
-- I cant wait for this to actually work
-- This is going to be great!</textarea>
+        <textarea class='u-full-width' id='notes_paragraph' name='notes' placeholder="Enter Notes Here">Velit Lorem eiusmod velit esse adipisicing qui dolore. Officia labore do nisi nisi reprehenderit ullamco mollit fugiat minim irure. Adipisicing officia laborum esse nulla laboris consequat occaecat nostrud laboris. Enim sint deserunt aute nisi ea id incididunt labore ea. Ea incididunt tempor ullamco minim officia culpa reprehenderit et minim. Quis aute nisi ad adipisicing adipisicing cillum cillum elit ex laboris sit.</textarea>
     </div>
 
     <input type='submit' class='button-primary u-full-width'>
 </form>
 
-<div id = 'note_holder'>
-{{#notes}}
-<h3 class='regex-format'>{{title}}</h3>
-<p class='regex-format'>{{notes}}</p>
-{{/notes}}
+<div id='note_holder'>
+    {{#notes}}
+    <div class='row note_card'>
+        <div class='eleven columns note_text'>
+            <h4 class='regex-format'>{{title}}</h4>
+            <p class='regex-format id'><i>{{id}}</i></p>
+            <p class='regex-format'>{{notes}}</p>
+        </div>
+        <div class='one columns note_buttons'>
+            <button value='{{id}}' id='{{id}}.up' onclick='card_action(this.id)'><i class="material-icons">expand_less</i></button>
+            <button value='{{id}}' id='{{id}}.delete' onclick='card_action(this.id)'><i class="material-icons">clear</i></button>
+            <button value='{{id}}' id='{{id}}.down' onclick='card_action(this.id)'><i class="material-icons">expand_more</i></button>
+        </div>
+    </div>
+    {{/notes}}
 </div>
 
 <script>
 
+    function card_action(location) {
+
+        let method = location.split('.')[1]
+
+        let obj = DOMID(location)
+
+        let payload = {
+            room_id: '{{id}}',
+            note_id: obj.value,
+            process: method
+        }
+
+        let completion = POSTPackage(payload, '/notes/manipulate')
+
+        window.location.reload()
+    }
+
+    function POSTPackage(payload, route) {
+        let req = new XMLHttpRequest()
+        req.open('POST', route)
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        req.onreadystatechange = () => {
+            if (this.readyState == 4 && this.status == 200) {
+                return true
+            } else return false
+        }
+
+        req.send(toUrlEncoded(payload))
+    }
+
     let notes = document.getElementsByClassName('regex-format')
-    
+
     let alpha = Array.from(notes).map((acc) => {
         let data = acc.innerHTML.replace(/\n/g, "<br>")
         return data
     })
 
-    for(var i = 0; i < alpha.length; i++){
+    for (var i = 0; i < alpha.length; i++) {
         notes[i].innerHTML = alpha[i]
     }
 
-    document.getElementById('submit_notes').addEventListener('submit', () => {
+    DOMID('submit_notes').addEventListener('submit', () => {
 
         let req = new XMLHttpRequest()
         req.open('POST', '/rooms/{{id}}')
@@ -50,12 +129,12 @@
         let submission = new FormData(DOMID('submit_notes'))
 
         let payload = {
-            title:submission.get('title'),
-            notes:submission.get('notes')
+            title: submission.get('title'),
+            notes: submission.get('notes')
         }
 
         req.onreadystatechange = () => {
-            if(this.readyState == 4 && this.status == 200){
+            if (this.readyState == 4 && this.status == 200) {
                 console.log('complete')
             }
         }

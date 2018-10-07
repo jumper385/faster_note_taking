@@ -1,3 +1,7 @@
+*{
+    font-family: monospace;
+    font-size: large;
+}
 .card{
     margin-bottom: 16pt;
 }
@@ -8,4 +12,19 @@
 .card_id{
     color:rgb(206, 206, 206);
     margin:0;
+}
+
+.window{
+    min-height: 100vh;
+}
+
+footer{
+    width:100%;
+    background:#33C3F0;
+    height:100pt;
+    margin-top:32pt;
+}
+
+.button{
+    font-size:large;
 }

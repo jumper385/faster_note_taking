@@ -107,7 +107,7 @@ app.get('/rooms/delete/are_you_sure', (req,res) => {
     })
 })
 
-app.route('/notes/manipulate')
+app.route('/manipulate/notes')
     .post((req,res) => {
         let payload = req.body
         let room_index;
@@ -121,7 +121,7 @@ app.route('/notes/manipulate')
             }
         })
 
-        let data = database[0].notes.filter((acc, i) => {
+        let note = database[room_index].notes.filter((acc, i) => {
             bool = acc.id === payload.note_id
             if(bool){
                 note_index = i
@@ -129,9 +129,34 @@ app.route('/notes/manipulate')
             }
         })
 
-        database[room_index].notes.splice(note_index, 1)
+        let truth = (room_index == undefined || note_index == undefined)
 
-        updateDatabase()
+        if(!truth) if(payload.method == 'delete'){
+
+            console.log('found')
+            database[room_index].notes.splice(note_index, 1)
+            updateDatabase()
+            
+        } else console.log('not found')
+    })
+
+app.route('/manipulate/rooms')
+    .post((req,res) => {
+        let payload = req.body
+        let room_index;
+
+        let room = database.filter((acc,i) => {
+            bool = acc.id === payload.room_id
+            if(bool){
+                room_index = i
+                return bool
+            }
+        })
+
+        console.log(room_index)
+
+        if(payload.method == 'delete' && room_index != undefined) console.log(database.splice(room_index, 1))
+
     })
 
 app.listen(3000, () => {

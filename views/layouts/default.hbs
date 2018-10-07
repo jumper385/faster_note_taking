@@ -16,8 +16,8 @@
 </head>
 
 <body>
+    {{!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.2/mousetrap.min.js'></script> --}}
     <script>
-        
         function DOMID(name) {
             return document.getElementById(name)
         }
@@ -37,13 +37,11 @@
 
             req.send(toUrlEncoded(payload))
         }
-
     </script>
     <div class='container window'>
         {{> header}}
         {{{body}}}
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 

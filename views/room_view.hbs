@@ -41,11 +41,6 @@
     </style>
 
 <form id='submit_notes'>
-    {{!-- <span>Title: <br><input type='text' id='notes_title'></span>
-    <br>
-    <span>Notes: <br><textarea id='notes_paragraph'></textarea></span>
-    <br>
-    <button id='notes_submit'>Submit</button> --}}
     <div class='twelve columns'>
         <label class='u-full-width' for='notes_title'>Note Title</label>
         <input class='u-full-width' type='text' id='notes_title' name='title' placeholder='Enter Title Here'>
@@ -80,17 +75,17 @@
 
     function card_action(location) {
 
-        let method = location.split('.')[1]
+        let data = location.split('.')
 
-        let obj = DOMID(location)
+        console.log(data)
 
         let payload = {
             room_id: '{{id}}',
-            note_id: obj.value,
-            process: method
+            note_id: data[0],
+            method: data[1]
         }
 
-        let completion = POSTPackage(payload, '/notes/manipulate')
+        let completion = POSTPackage(payload, '/manipulate/notes')
 
         window.location.reload()
     }

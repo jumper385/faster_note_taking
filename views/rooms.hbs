@@ -1,12 +1,17 @@
-<div class = 'row'>
-    {{!-- {{#rooms}}
-    <div class='card three columns'>
-        <p class='card_title'>{{room_name}}</p>
-        <p class='card_id'>{{id}}</p>
-        <a href="./rooms/{{id}}">Join Room</a>
-    </div>
-    {{/rooms}} --}}
+<style>
 
+    .card .delete{
+        color:rgb(255, 61, 61);
+        text-decoration: underline;
+    }
+
+    .card .delete:hover{
+        cursor:pointer
+    }
+
+</style>
+
+<div class = 'row'>
     {{#each rooms}}
         <div class = 'row'>
         {{#each this}}
@@ -14,6 +19,7 @@
                 <p class = 'card_title'>{{this.room_name}}</p>
                 <p class='card_id'>{{this.id}}</p>
                 <a href='/rooms/{{this.id}}'>Join Room</a>
+                <a class='delete' id="{{this.id}}.delete" onclick ="delete_room(this.id)">Delete</a>
             </div>
         {{/each}}
         </div>
@@ -52,10 +58,13 @@
         }
 
         req.send(toUrlEncoded(newRoom))
-
-        console.log(newRoom)
-
-        
     })
+
+    function delete_room(location){
+        console.log(location)
+        let room = location.split('.')
+        let completion = POSTPackage({room_id:room[0], method:room[1]}, 'manipulate/rooms')
+        window.location.reload()
+    }
 
 </script>

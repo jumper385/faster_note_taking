@@ -114,7 +114,6 @@ app.listen(3000, () => {
 let updateDatabase = () => {
     fs.writeFile('./statics/data/rooms.json', JSON.stringify(database, null, '\t'), (err) => {
         if (err) throw err
-        console.log('finished')
     })  
 }
 

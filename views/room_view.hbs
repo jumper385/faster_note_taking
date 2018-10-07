@@ -73,6 +73,12 @@
 
 <script>
 
+    var click = new Event('submit')
+
+    Mousetrap.bind('ctrl+shift+e', () => {
+        DOMID('submit_notes').dispatchEvent(click)
+    })
+    
     function card_action(location) {
 
         let data = location.split('.')
@@ -121,6 +127,7 @@
         }
 
         req.send(toUrlEncoded(payload))
+        window.location.reload()
     })
 
 </script>

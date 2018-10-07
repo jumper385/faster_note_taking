@@ -1,13 +1,7 @@
-// function resize(array, i, j) {
-//     var gen = array.reduce((a, b) => a.concat(b))[Symbol.iterator]();
-    
-//     return Array.from({ length: i }, _ => Array.from({ length: j }, _ => gen.next().value));
-// }
+let keyboardJS = require('keyboardjs')
 
-// console.log(resize([[0, 1, 2, 3, 4, 5]], 2, 3));
+keyboardJS.bind('shift + enter', (operation) => {
+    return operation
+})
 
-const names = [
-    'Rosie Richards',
-    'Olivia Brady',
-    'Charles Morrison'
-]
+

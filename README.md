@@ -13,14 +13,15 @@ The overarching goal of this project is to produce an app that allows users to t
 - [ ] Image Attachments 📷
 - [ ] Diagram and Stylus Support 🌠
 
-NOTE: Unchecked means the feature isn't implemented yet 😄
+NOTE: Unchecked means core functionality isnt implemented yet 😄
 
 # Task Postings
 New Tasks are posted here. Once these tasks are completed, they will be ticked off. 
 
 ### 7th October 2018
 - [ ] Improving the notes form
-- [ ] Adding Delete Functionality PER element
+- [ ] Add Delete Functionality PER element
+- [ ] Add Audio Recording w/ via https://addpipe.com/blog/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
 
 ### 6th October 2018
 - [x] Implement better notes posting

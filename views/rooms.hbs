@@ -21,9 +21,10 @@
 </div>
 
 <form id='new_room'>
+
     <div class="row">
         <label for='add_room'>Make a Room</label>
-        <input placeholder='Enter a new Room Name Here' type='text' id='add_room' class='u-full-width'required>
+        <input placeholder='Enter a new Room Name Here' type='text' id='add_room' class='u-full-width' required>
     </div>
 
     <div class ='row'>
@@ -33,8 +34,6 @@
 </form>
 
 <script>
-
-    const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
 
     document.getElementById('new_room').addEventListener('submit',() => {
         
@@ -58,9 +57,5 @@
 
         
     })
-
-    function DOMID(name){
-        return document.getElementById(name)
-    }
 
 </script>

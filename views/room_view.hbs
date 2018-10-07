@@ -1,19 +1,32 @@
 <p>{{id}}</p>
 
+<form id='submit_notes'>
+    {{!-- <span>Title: <br><input type='text' id='notes_title'></span>
+    <br>
+    <span>Notes: <br><textarea id='notes_paragraph'></textarea></span>
+    <br>
+    <button id='notes_submit'>Submit</button> --}}
+    <div class='twelve columns'>
+        <label class='u-full-width' for='notes_title'>Note Title</label>
+        <input class='u-full-width' type='text' id='notes_title' name='title' value='Hello World 👋 this is a new note 📝'>
+    </div>
+
+    <div class='twelve columns'>
+        <label class='u-full-width' for='notes_paragraph'>Notes</label>
+        <textarea class='u-full-width' id='notes_paragraph' name='notes'>- Yes... this is a new note
+- I cant wait for this to actually work
+- This is going to be great!</textarea>
+    </div>
+
+    <input type='submit' class='button-primary u-full-width'>
+</form>
+
 <div id = 'note_holder'>
 {{#notes}}
 <h3 class='regex-format'>{{title}}</h3>
 <p class='regex-format'>{{notes}}</p>
 {{/notes}}
 </div>
-
-<form>
-    <span>Title: <br><input type='text' id='notes_title'></span>
-    <br>
-    <span>Notes: <br><textarea id='notes_paragraph'></textarea></span>
-    <br>
-    <button id='notes_submit'>Submit</button>
-</form>
 
 <script>
 
@@ -28,46 +41,28 @@
         notes[i].innerHTML = alpha[i]
     }
 
-    document.getElementById('notes_submit').addEventListener('click', makeRequest)
-
-    function makeRequest(){
-
-        let roomID = '{{id}}'
-
-        console.log("HELLO")
+    document.getElementById('submit_notes').addEventListener('submit', () => {
 
         let req = new XMLHttpRequest()
+        req.open('POST', '/rooms/{{id}}')
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        req.open('POST', `/rooms/${roomID}`)
-        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let submission = new FormData(DOMID('submit_notes'))
+
+        let payload = {
+            title:submission.get('title'),
+            notes:submission.get('notes')
+        }
+
         req.onreadystatechange = () => {
-            if(req.readyState == 4 && req.status == 200){
-                console.log('sent POST')
+            if(this.readyState == 4 && this.status == 200){
+                console.log('complete')
             }
         }
 
-        let payload = {
-            title:DOMID('notes_title').value,
-            notes:DOMID('notes_paragraph').value
-        }
+        req.send(toUrlEncoded(payload))
 
-        console.log(payload.notes)
-
-        if(payload.notes === "" & payload.title === ""){
-            console.log("OH SHIT")
-        } else {
-            req.send(payload && toUrlEncoded(payload))
-            console.log(payload)
-        }
-
-    }    
-
-    function DOMID(name){
-        return document.getElementById(name)
-    }    
-
-    const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
-
-    toUrlEncoded({hello: 'world', message: "JavaScript is cool"});
+        console.log(payload)
+    })
 
 </script>

@@ -1,68 +1,19 @@
 [
 	{
-		"id": "dv8wc1bcwjmyezyyd",
-		"room_name": "Methods 🌱",
-		"creation_time": 1538889372084,
+		"id": "dv8wc1c9kjmynhtph",
+		"room_name": "Hello World 👋",
+		"creation_time": 1538903642020,
 		"notes": [
 			{
-				"id": "dv8wc1c40jmyf34c4",
-				"title": "New Note Test",
-				"notes": "- This is a new note\n- There's a few extra tabs\n- Woah nice dude XD"
-			}
-		]
-	},
-	{
-		"id": "dv8wc113wjmyf08gw",
-		"room_name": "Specialist 😭",
-		"creation_time": 1538889384415,
-		"notes": []
-	},
-	{
-		"id": "dv8wc1a4sjmyf11cb",
-		"room_name": "Chemistry 👨‍🔬",
-		"creation_time": 1538889421834,
-		"notes": []
-	},
-	{
-		"id": "dv8wc15tgjmyf195o",
-		"room_name": "Physics 👌",
-		"creation_time": 1538889431963,
-		"notes": []
-	},
-	{
-		"id": "dv8wc14p0jmyf1d74",
-		"room_name": "English ✍",
-		"creation_time": 1538889437199,
-		"notes": []
-	},
-	{
-		"id": "dv8wc18zgjmyf25gn",
-		"room_name": "Engineering 🏛",
-		"creation_time": 1538889473830,
-		"notes": []
-	},
-	{
-		"id": "dv8wc155kjmyfiovp",
-		"room_name": "🍎red apples vs green apples🍏",
-		"creation_time": 1538890245492,
-		"notes": [
+				"id": "dv8wc141kjmynhztc",
+				"title": "Hello World 👋 this is a new note 📝",
+				"notes": "- Yes... this is a new note\r\n- I cant wait for this to actually work\r\n- This is going to be great!"
+			},
 			{
-				"id": "dv8wc1610jmyfmfxg",
-				"title": "First Post",
-				"notes": "- This is a first post... it's always fun to post here\n- Apples to oranges\n- just apples i guess :D\n"
+				"id": "dv8wc17q0jmynocrj",
+				"title": "Hello World 👋 this is a new note 📝",
+				"notes": "- Yes... this is a new note\r\n- I cant wait for this to actually work\r\n- This is going to be great!"
 			}
 		]
-	},
-	{
-		"id": "dv8wc1bm8jmyfj7bj",
-		"room_name": "🎉 PARTY MODE 🎉",
-		"creation_time": 1538890269390,
-		"notes": []
-	},
-	{
-		"id": "dv8wc16s8jmyfkyga",
-		"room_name": "Mock Trials ⚖",
-		"creation_time": 1538890351209,
-		"notes": []
 	}
 ]

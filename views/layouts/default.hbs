@@ -21,7 +21,13 @@
     {{{body}}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script>
+        function DOMID(name){
+            return document.getElementById(name)
+        }
+        
+        const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
+    </script>
 </body>
 
 </html>

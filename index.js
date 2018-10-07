@@ -90,6 +90,8 @@ app.route('/rooms/:id')
             notes:req.body.notes
         })
 
+        console.log(req.body)
+
         updateDatabase()
     })
 

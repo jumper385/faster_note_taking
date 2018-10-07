@@ -19,7 +19,7 @@ NOTE: Unchecked means core functionality isnt implemented yet 😄
 New Tasks are posted here. Once these tasks are completed, they will be ticked off. 
 
 ### 7th October 2018
-- [ ] Improving the notes form
+- [x] Improving the notes form
 - [ ] Add Delete Functionality PER element
 - [ ] Add Audio Recording w/ via https://addpipe.com/blog/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
 
